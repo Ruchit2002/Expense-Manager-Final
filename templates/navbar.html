@@ -1,0 +1,244 @@
+{% load static %}{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags --> 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Dashboard</title>
+  <!-- base:css -->
+  <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/base/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'assets/vendors/flag-icon-css/css/flag-icon.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'assets/vendors/font-awesome/css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/jquery-bar-rating/fontawesome-stars-o.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/jquery-bar-rating/fontawesome-stars.css' %}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
+</head>
+<body>
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row ">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <!-- <a class="navbar-brand brand-logo" href="http://127.0.0.1:8000/user/dashboard/"><img src="{% static 'assets/images/logo.svg' %}" alt="logo"/></a> -->
+        <h5 style="color: aliceblue;">Expense_Manager</h5>
+        <!-- <a class="navbar-brand brand-logo-mini" href="http://127.0.0.1:8000/user/dashboard/"><img src="{% static 'assets/images/logo-mini.svg' %}" alt="logo"/></a> -->
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                  <script>
+                    const form = document.getElementById('myForm');
+                    const input = form.querySelector('input[name="search-area"]');
+                                
+                    input.addEventListener('keydown', (event) => {
+                      if (event.key === 'Enter') {
+                        event.preventDefault();
+                        form.submit();
+                      }
+                    });
+                  </script>
+    
+                  <form method="get" id="myForm">
+                    {% for expense in exp %}
+                    {{expense.category_id__cname}}
+                  {% endfor %}
+                  <input style="border: none;" type="text" name="search-area" value="{{search_input}}" placeholder="Search Category" class="form-control">
+                  </form>
+    
+                </span>
+              </div>
+              <!-- <input type="text" class="form-control" placeholder="Search Projects.." aria-label="search" aria-describedby="search"> -->
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item dropdown d-lg-flex d-none">
+              <a  href="http://127.0.0.1:8000/expense/create/">
+                <button type="button" class="btn btn-info font-weight-bold">+ Create New</button>
+              </a>
+            </li>
+          <!-- <li class="nav-item dropdown d-flex">
+            <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
+              <i class="icon-air-play mx-0"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                    <img src="{% static 'assets/images/faces/face4.jpg' %}" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow">
+                  <h6 class="preview-subject ellipsis font-weight-normal">David Grey
+                  </h6>
+                  <p class="font-weight-light small-text text-muted mb-0">
+                    The meeting is cancelled
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                    <img src="{% static 'assets/images/faces/face2.jpg' %}" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow">
+                  <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
+                  </h6>
+                  <p class="font-weight-light small-text text-muted mb-0">
+                    New product launch
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                    <img src="{% static 'assets/images/faces/face3.jpg' %}" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow">
+                  <h6 class="preview-subject ellipsis font-weight-normal"> Johnson
+                  </h6>
+                  <p class="font-weight-light small-text text-muted mb-0">
+                    Upcoming board meeting
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li> -->
+          <li class="nav-item dropdown d-flex mr-4 ">
+            <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="icon-cog"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Settings</p>
+              <a class="dropdown-item preview-item" href="{% url 'userdetail' user.id %}">               
+                  <i class="icon-head"></i> Profile
+              </a>
+              <a class="dropdown-item preview-item" href="http://127.0.0.1:8000/user/logout/">
+                  <i class="icon-inbox"></i> Logout
+              </a>
+            </div>
+          </li>
+          </ul>
+        <!-- <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button> -->
+      </div>
+    </nav> 
+     <!-- partial -->
+     <div class="container-fluid page-body-wrapper"> 
+       <!-- partial:partials/_sidebar.html -->
+       <nav class="sidebar sidebar-offcanvas" id="sidebar">
+
+        <div class="user-profile">
+          <div class="user-image">
+            {% if user.picture %}
+              <img style="height: 79px; width: 79px;" src="{{user.picture.url}}" alt="Maxwell Admin">
+            {% else %}
+              <img style="height: 79px; width: 79px;" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+            {% endif %}  
+            <!-- <img src="{% static 'assets/images/faces/face28.png' %}"> -->
+          </div>
+          <div class="user-name">
+            {{user.get_username}}&nbsp;{{user.last_name}}
+          </div>
+          <div class="user-designation">
+            {{user.professions}}
+          </div>
+        </div>
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000/user/dashboard/">
+              <i class="icon-box menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000/expense/create/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-currency-exchange" viewBox="0 0 16 16">
+                <path d="M0 5a5.002 5.002 0 0 0 4.027 4.905 6.46 6.46 0 0 1 .544-2.073C3.695 7.536 3.132 6.864 3 5.91h-.5v-.426h.466V5.05c0-.046 0-.093.004-.135H2.5v-.427h.511C3.236 3.24 4.213 2.5 5.681 2.5c.316 0 .59.031.819.085v.733a3.46 3.46 0 0 0-.815-.082c-.919 0-1.538.466-1.734 1.252h1.917v.427h-1.98c-.003.046-.003.097-.003.147v.422h1.983v.427H3.93c.118.602.468 1.03 1.005 1.229a6.5 6.5 0 0 1 4.97-3.113A5.002 5.002 0 0 0 0 5zm16 5.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0zm-7.75 1.322c.069.835.746 1.485 1.964 1.562V14h.54v-.62c1.259-.086 1.996-.74 1.996-1.69 0-.865-.563-1.31-1.57-1.54l-.426-.1V8.374c.54.06.884.347.966.745h.948c-.07-.804-.779-1.433-1.914-1.502V7h-.54v.629c-1.076.103-1.808.732-1.808 1.622 0 .787.544 1.288 1.45 1.493l.358.085v1.78c-.554-.08-.92-.376-1.003-.787H8.25zm1.96-1.895c-.532-.12-.82-.364-.82-.732 0-.41.311-.719.824-.809v1.54h-.005zm.622 1.044c.645.145.943.38.943.796 0 .474-.37.8-1.02.86v-1.674l.077.018z"/>
+              </svg>&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="menu-title">Add Expense</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000/expense/list/">
+              <i class="icon-command menu-icon"></i>
+              <span class="menu-title">List</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'userdetail' user.id %}">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'chart' %}">
+              {% comment %} <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-droplet-half" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0c.109.363.234.708.371 1.038.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8zm.413 1.021A31.25 31.25 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10c0 0 2.5 1.5 5 .5s5-.5 5-.5c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
+                <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"/>
+              </svg>&nbsp;&nbsp;&nbsp;&nbsp; {% endcomment %}
+              <span class="menu-title">piechart</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000">
+              <i class="mdi mdi-home-outline" style="font-size:20px;"></i>
+              &nbsp;&nbsp;&nbsp;
+              <span class="menu-title">Home</span>
+            </a>
+          </li>
+        </ul>
+      </nav> 
+      <!-- partial -->
+
+    {% block content %}
+
+    {% endblock %}
+
+  </div>
+
+  <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+
+<!-- base:js -->
+<script src="{% static 'assets/vendors/base/vendor.bundle.base.js' %}"></script>
+<!-- endinject -->
+<!-- Plugin js for this page-->
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<script src="{% static 'assets/js/off-canvas.js' %}"></script>
+<script src="{% static 'assets/js/hoverable-collapse.js' %}"></script>
+<script src="{% static 'assets/js/template.js' %}"></script>
+<!-- endinject -->
+<!-- plugin js for this page -->
+<script src="{% static 'assets/vendors/chart.js/Chart.min.js' %}"></script>
+<script src="{% static 'assets/vendors/jquery-bar-rating/jquery.barrating.min.js' %}"></script>
+<!-- End plugin js for this page -->
+<!-- Custom js for this page-->
+<script src="{% static 'assets/js/dashboard.js' %}"></script>
+<!-- End custom js for this page-->
+
+</body>
+
+</html>
+
+      

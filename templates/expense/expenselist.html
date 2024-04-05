@@ -1,0 +1,107 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+{% load static %}
+ 
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-sm-12 mb-4 mb-xl-0">
+              <h4 class="font-weight-bold text-dark">Hi, welcome {{user.username}}!</h4>
+              <!-- <h4 class="font-weight-normal mb-2 text-muted"><b>List</b></h4> -->
+            </div>
+          </div>
+          <div class="card-body">
+            <!-- <h4 class="card-title">Horizontal Form</h4>
+            <p class="card-description">
+              Horizontal form layout
+            </p> -->
+            <form class="forms-sample">            
+
+              <div class="card-body">
+                <h4 class="card-title">List of Expenses</h4>
+                <div class="table-responsive pt-3">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                         <th><b>Category</b></th>
+                        <th><b>SubCategory</b></th>
+                        <th><b>Amount</b></th>
+                        <th><b>Date<a href="?sort_by=exptime&amp;direction=desc">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"/>
+                          </svg>
+                        </a>
+  
+                        <a href="?sort_by=exptime&amp;direction=asc">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
+                          </svg>
+                        </a></b></th>
+                        <th><b>Actions</b></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in expenselist %}
+                      <col>
+                      <td>
+                        <strong>{{i.category_id__cname}}</strong>
+                      </td>
+                      <td>
+                        <strong>{{i.subcategory}}</strong>
+                      </td> 
+                      <td> 
+                        <strong>{{i.amount}}</strong>
+                      </td>
+                      <td>
+                        <strong>{{i.expdate}}</strong>
+                      </td>
+                      <td>
+                        <a href="{% url 'expensedelete' i.id %}">
+                        <input type="button" value="Delete" class="btn btn-primary"></a>
+                        <a href="{% url 'expensedetail' i.id %}">
+                          <input type="button" value="Detail" class="btn btn-primary"></a>  
+                      </td>
+        
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </form>
+          </div>
+          
+          <div class="row">
+                    
+                  </div>
+              </div>
+                  
+                </div>
+              </div>
+              <div class="col-xl-4 grid-margin stretch-card">
+                
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-9 grid-margin-lg-0 grid-margin stretch-card">
+              </div>
+            <div class="col-xl-3 grid-margin-lg-0 grid-margin stretch-card">
+              
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © expense_manager.com 2024</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Manage <a href="#">your financial budget</a> with exapanse_manager.com </span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    {% endblock %}
+    

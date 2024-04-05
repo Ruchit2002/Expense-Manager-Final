@@ -1,0 +1,61 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+
+
+{% load static %}{% load crispy_forms_tags %}
+
+ 
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-sm-12 mb-4 mb-xl-0">
+              <h4 class="font-weight-bold text-dark">Hi, welcome {{user.username}}!</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <form method ="post">
+              {% csrf_token %}
+              {{form|crispy}}
+
+              <input type="submit" class="btn btn-info" value="Submit" >
+              <!-- <button type="button" class="btn btn-info">Info</button> -->
+              <button class="btn btn-light" fdprocessedid="dxoe6o">Cancel</button>
+              
+            </form>
+           
+          </div>
+          <div class="row">
+            
+                    
+                  </div>
+              </div>
+                  
+                </div>
+              </div>
+              <div class="col-xl-4 grid-margin stretch-card">
+                
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-9 grid-margin-lg-0 grid-margin stretch-card">
+              </div>
+            <div class="col-xl-3 grid-margin-lg-0 grid-margin stretch-card">
+              
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © expense_manager.com 2024</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Manage <a href="#">your financial budget</a> with exapanse_manager.com </span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+{% endblock %}

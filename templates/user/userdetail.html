@@ -1,0 +1,165 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+   <!-- partial -->
+   <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-md-12 grid-margin">
+          <div class="row">
+            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+              <h3 class="font-weight-bold" style="color: rgb(25, 25, 120);">Welcome, {{user.get_username}}</h3>
+
+              <style>
+                 @font-face { font-family: Nunito; src: url('static/assets/fonts/Nunito/Nunito-Regular.ttf'); }
+              </style>
+            </div>
+            <div class="col-12 col-xl-4">
+             <div class="justify-content-end d-flex">
+              <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+              <!-- <a href="#" class="btn btn-primary">Edit Profile</a> -->
+
+              </div>
+             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+    <div class="row">
+      <div class="container">
+        <div class="row gutters">
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="account-settings">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                          {% if user.picture %}
+                          <img style="height: 200px; width: 200px;" src="{{user.picture.url}}" alt="Maxwell Admin">
+                        {% else %}
+                          <img style="height: 200px; width: 200px;" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                         {% endif %}                      
+                          </div>
+                        <br>
+                        <h5 class="user-name">{{user.get_username}}</h5>
+                        <h6 class="user-email">{{user.email}}</h6>
+                    </div>
+                    <div class="about">
+                        <!-- <h5>About</h5>
+                        <p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        <div class="col-md-8">
+            <div class="card mb-3">
+              <div class="card-body">
+                <h4 class="d-flex align-items-center mb-3" style="color: #4B49AC;">
+                    Personal Details
+                </h4>
+                <br>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">User Name</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <strong style="color: black;">{{user.username}}</strong>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">First Name</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                   <strong style="color: black;">{{user.first_name}}</strong> 
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Last Name</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <strong style="color: black;">{{user.last_name}}</strong>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <strong style="color: black;">{{user.email}}</strong>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Budget</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <strong style="color: black;">{{user.budget}}</strong>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <strong style="color: black;">{{user.address}}</strong>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Professions</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <strong style="color: black;">{{user.professions}}</strong>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Age</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <strong style="color: black;">{{user.age}}</strong>
+                    </div>
+                  </div>
+                  <hr>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <a class="btn btn-info " href="{% url 'userupdate' user.id %}">Edit</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+        </div>
+
+        </div>
+        </div>
+    </div>
+    <footer class="footer">
+      <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © expense_manager.com 2024</span>
+        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Manage <a href="#">your financial budget</a> with exapanse_manager.com </span>
+      </div>
+    </footer>        
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    
+
+{% endblock %}
